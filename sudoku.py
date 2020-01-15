@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-import numpy as np
-from collections import Counter
-
-
 # Board consists of cells, rows, columns and squares(sub-grid)
 # Each cell is represented by a 2D index indicating (row_idx, col_idx)
 
-
+import numpy as np
+from collections import Counter
 
 # Define hashmaps 
 # id2square: gives corresponding sub-grid (1-9) based on divisibility of indexes of a cell by 3
@@ -97,7 +94,8 @@ def is_valid_board(arr):
         items = Counter(arr[i, :])
         if(not no_duplicates(items)):
             return False
-    
+
+
     # Check for each col
     for i in range(9):
         items = Counter(arr[:, i])
@@ -130,9 +128,7 @@ def update_board(arr, possible_dict):
                 return arr, False
             else:
                 #print(f"Setting {k} as {arr[k]}")
-                pass
-            
-
+                pass      
     #print_board(arr)
     return arr, True
 
