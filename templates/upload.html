@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+
+{% block content %}
+   	
+    <div class='left'>
+    	<h3>Upload Sudoku Image</h3>    
+	    <form action="" method=post enctype=multipart/form-data>
+	    	<input type=file name=filename>
+	        <input type=submit value=Upload>
+	    </form>
+
+	    <a href="{{ url_for('detect_board') }}"> <small> Click to try a sample image! </small> </a>
+	</div>	
+    
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %} 
+
+{% block content %}
+
+        <div class="left">
+        	<h3> Uploaded Image </h3>
+
+        	<img src="{{ url_for('send_file', filename=filename) }}", width="300", height="300">
+        </div>
+
+        <div class="middle">
+        	<h3> Sudoku Board </h3>
+	        <form action= "{{url_for("detect_board")}}", method=post>
+	        	<p> Remove Grid Lines </p>
+	        	<input type="radio" name="remove_lines" value="True" checked> True<br>
+	        	<input type="radio" name="remove_lines" value="False"> False<br>
+		        <input type="submit" name="Detect Board" value="Detect Board">
+		        <input type="text" name="filename" value={{ filename }}>
+	        </form>
+    	</div>
+
+{% endblock %}

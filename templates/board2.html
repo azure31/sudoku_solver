@@ -1,0 +1,104 @@
+{% extends "layout.html" %} 
+
+{% block content %}
+	
+	<div class="left"> 
+        <h3> Uploaded Image </h3>
+        <img src="{{ url_for('send_file', filename=filename) }}", width="250", height="250"> 
+    </div>
+
+    <div class="middle">
+
+    	<style>
+    	table { border-collapse: collapse; font-family: Calibri, sans-serif; }
+    	colgroup, tbody { border: solid medium; }
+    	td { border: solid thin; height: 1.4em; width: 1.4em; text-align: center; padding: 0; }
+    	</style>
+
+        <h3> Detected Sudoku Board </h3>
+    	<table>
+    	  
+    	  <colgroup><col><col><col></colgroup>
+    	  <colgroup><col><col><col></colgroup>
+    	  <colgroup><col><col><col></colgroup>
+    	  <tbody>
+    	    <tr> <td> {{arr[0,0]}} <td> {{arr[0,1]}} <td>{{arr[0,2]}} <td>{{arr[0,3]}} <td>{{arr[0,4]}}  <td>{{arr[0,5]}} <td>{{arr[0,6]}} <td> {{arr[0,7]}} <td>{{arr[0,8]}}
+    	    <tr> <td> {{arr[1,0]}} <td> {{arr[1,1]}} <td>{{arr[1,2]}} <td>{{arr[1,3]}} <td>{{arr[1,4]}}  <td>{{arr[1,5]}} <td>{{arr[1,6]}} <td> {{arr[1,7]}} <td>{{arr[1,8]}}
+    	    <tr> <td> {{arr[2,0]}} <td> {{arr[2,1]}} <td>{{arr[2,2]}} <td>{{arr[2,3]}} <td>{{arr[2,4]}}  <td>{{arr[2,5]}} <td>{{arr[2,6]}} <td> {{arr[2,7]}} <td>{{arr[2,8]}}
+    	    
+    	  <tbody>
+    	    <tr> <td> {{arr[3,0]}} <td> {{arr[3,1]}} <td>{{arr[3,2]}} <td>{{arr[3,3]}} <td>{{arr[3,4]}}  <td>{{arr[3,5]}} <td>{{arr[3,6]}} <td> {{arr[3,7]}} <td>{{arr[3,8]}}
+    	    <tr> <td> {{arr[4,0]}} <td> {{arr[4,1]}} <td>{{arr[4,2]}} <td>{{arr[4,3]}} <td>{{arr[4,4]}}  <td>{{arr[4,5]}} <td>{{arr[4,6]}} <td> {{arr[4,7]}} <td>{{arr[4,8]}}
+    	    <tr> <td> {{arr[5,0]}} <td> {{arr[5,1]}} <td>{{arr[5,2]}} <td>{{arr[5,3]}} <td>{{arr[5,4]}}  <td>{{arr[5,5]}} <td>{{arr[5,6]}} <td> {{arr[5,7]}} <td>{{arr[5,8]}}
+    	    
+    	  
+    	  <tbody>
+    	    <tr> <td> {{arr[6,0]}} <td> {{arr[6,1]}} <td>{{arr[6,2]}} <td>{{arr[6,3]}} <td>{{arr[6,4]}}  <td>{{arr[6,5]}} <td>{{arr[6,6]}} <td> {{arr[6,7]}} <td>{{arr[6,8]}}
+    	    <tr> <td> {{arr[7,0]}} <td> {{arr[7,1]}} <td>{{arr[7,2]}} <td>{{arr[7,3]}} <td>{{arr[7,4]}}  <td>{{arr[7,5]}} <td>{{arr[7,6]}} <td> {{arr[7,7]}} <td>{{arr[7,8]}}
+    	    <tr> <td> {{arr[8,0]}} <td> {{arr[8,1]}} <td>{{arr[8,2]}} <td>{{arr[8,3]}} <td>{{arr[8,4]}}  <td>{{arr[8,5]}} <td>{{arr[8,6]}} <td> {{arr[8,7]}} <td>{{arr[8,8]}}
+    		    
+    		   
+    	</table>        
+    </div>
+
+
+    <div class='right'>
+        <h3>Update Board Entries</h3>
+
+        <form action= "{{url_for("update_board")}}" method=post novalidate>
+            
+            {{ form.hidden_tag() }}
+        	
+            <input type="text" name="filename" value={{ filename }}> <br> <br>
+            
+            Row Number
+            <select name="row">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select><br><br>
+            
+            Column Number
+            <select name="col">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>            
+            </select> <br><br>
+
+            Cell Value
+            <select name="val">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select> <br> <br>
+            
+            <input type="submit" name="Update" value="Update">
+        </form>
+        <br> <br>
+        <h3> Solve Board! </h3>
+        <form action= "{{url_for("solve")}}" method=post novalidate>
+            <input type="submit" name="Solve" value="Solve">
+        	<input type="text" name="filename" value={{ filename }}>
+        </form>
+    </div>
+          
+{% endblock %}

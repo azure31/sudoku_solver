@@ -55,6 +55,20 @@ def print_board(arr):
     print("-----------------------")
 
 
+def print_board_jinja(arr):
+    
+    ''' Print current board configuration '''
+    rows = []
+    for i in range(9):    
+        if(i%3 == 0):
+            rows.append("-----------------------")
+        row = "|".join(' ' + str(arr[i][j:j+3]) + ' ' for j in range(0, 9, 3))
+        row = row.replace("[", "").replace("]", "").replace(",", " ")
+        rows.append(row)
+    rows.append("-----------------------")
+    return rows
+
+
 def gen_cell_possibilities(arr, i, j):
     
     ''' Find all possible values for a cell based on values of its peers '''
@@ -161,7 +175,7 @@ def solve_board(arr):
     if(len(curr_possible)==0):
         print("base case: sudoku solved")
         print_board(arr)
-        return True
+        return True, arr
     
     # If an empty cells has no possible value
     if(any(len(curr_possible[k])==0 for k in curr_possible)):
@@ -188,8 +202,9 @@ def solve_board(arr):
             #print(f"Trying out {k} at {key}")
             arr_cpy = arr.copy()
             arr_cpy[key] = k
-            if(solve_board(arr_cpy)):
-                return True
+            solved = solve_board(arr_cpy)
+            if(not solved is False):
+                return True, solved[1]
         
         return False    
                 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title> Sudoku Demo</title>
+    <style> 
+
+    	body {font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+			Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+			-webkit-font-smoothing: antialiased;
+			background-color: #f8f8f8;
+			}
+
+		h1 {color: #ffffff;}
+		h2, h3, h4, h5, h6 {color: #444444;}
+		
+		a, u {text-decoration: none;}
+      
+        .site-header > div{ padding:1em; 
+                    background:#5f788a; }
+
+        .site-header {display:grid; 
+                grid-template-columns: 1fr 5fr;
+                grid-gap:0.2em;
+                justify-items:stretch;
+                align-items:start;
+                align-content: space-around;
+                }
+    
+        .main {display:grid;
+             grid-template-columns: 2fr 2fr 1fr;
+             grid-gap:.25em;
+             align-content: space-around;
+            }
+      
+        .main > div{ padding:1em; 
+            background:#f8f8f8;}
+    
+    </style>
+    
+  </head>
+  
+  <body>
+      <div class='site-header'>
+      
+        <div>
+          <img src="{{ url_for('static', filename= 'icon.png')}}", width="80", height="80"> 
+        </div>          
+          
+        <div>
+          <a href="/">
+          	<h1>
+            Sudoku Solver Demo
+          	</h1>
+          </a>
+        </div>
+    </div>
+
+      
+      <div class='main'>
+		<div> </div>
+		<div>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<span> <small> <font color='red'><strong> {{ message }} </font></strong> </small></span>
+				{% endfor %}
+			{% endif %}			
+		{% endwith %}
+		</div>
+		<div>
+		</div>
+
+        {% block content %}
+        {% endblock %}
+        
+      </div>
+  </body>
+</html>
