@@ -11,8 +11,7 @@ from sudoku import print_board, solve_board, print_board_jinja
 import numpy as np
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-#UPLOAD_FOLDER = '/home/ITTIAM/100715/Codes/keras-flask-deploy-webapp/sudoku/static/uploads'
-UPLOAD_FOLDER = 'C:\\Users\\Prahita\\Desktop\\DS\\SE\\sudoku_solver\\sudoku\\static\\uploads'
+UPLOAD_FOLDER = 'C:\\Users\\Prahita\\Desktop\\DS\\SE\\sudoku_solver\\sudoku_solver\\static\\uploads'
  
 # Declare a flask app
 app = Flask(__name__, static_url_path='/static', static_folder='static')
@@ -106,8 +105,8 @@ def solve():
                 flash("Sudoku Solved!")
                 return render_template('board3.html', filename=filename, arr=solved[1])
             else:
-                flash("Could not solve. Check if there are any errors in the board", 'failure')
-                return "Could not solve. Check if there are any errors in the board"
+                flash("Could not solve. Check if there are any errors in the board.")
+                return "Could not solve. Check if there are any errors in the board."
     return render_template('board2.html', filename=filename, arr=board, form=SudokuForm())
 
   
